@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]  # 본인의 기본 브랜치 이름이 master라면 master로 수정
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -30,14 +30,13 @@ jobs:
         run: pnpm install
 
       - name: Build Mockup Sandbox
-        # 우리가 터미널에서 입력했던 환경변수를 여기에 녹여냅니다.
         run: |
           cd artifacts/mockup-sandbox
           pnpm run build
         env:
           PORT: 3000
-          BASE_PATH: /  # GitHub Pages 주소에 따라 수정될 수 있습니다.
-          VITE_APP_MODE: main 
+          BASE_PATH: /restroom/
+          VITE_APP_MODE: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -45,7 +44,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 빌드된 결과물 위치
           path: './artifacts/mockup-sandbox/dist'
 
       - name: Deploy to GitHub Pages
