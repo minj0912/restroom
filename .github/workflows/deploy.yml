@@ -2,8 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: "main"
 
+# 이 부분의 들여쓰기가 매우 중요합니다!
 permissions:
   contents: read
   pages: write
@@ -22,9 +23,9 @@ jobs:
           node-version: 20
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v2
         with:
-          version: 10
+          version: 8
 
       - name: Install dependencies
         run: pnpm install
@@ -32,11 +33,8 @@ jobs:
       - name: Build Mockup Sandbox
         run: |
           cd artifacts/mockup-sandbox
+          pnpm install
           pnpm run build
-        env:
-          PORT: 3000
-          BASE_PATH: /restroom/
-          VITE_APP_MODE: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
