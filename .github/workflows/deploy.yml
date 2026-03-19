@@ -26,10 +26,11 @@ jobs:
         with:
           version: 8
 
-      - name: Build Web Only
+      - name: Build Web Only (Isolated)
         run: |
+          # 루트 폴더가 아닌 mockup-sandbox 폴더로 들어가서 독립적으로 설치합니다.
           cd artifacts/mockup-sandbox
-          pnpm install --no-frozen-lockfile
+          pnpm install --no-frozen-lockfile --filter .
           pnpm run build
 
       - name: Setup Pages
