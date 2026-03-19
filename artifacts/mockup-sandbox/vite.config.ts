@@ -30,7 +30,8 @@ if (!basePath) {
 export default defineConfig({
   base: basePath,
   plugins: [
-    mockupPreviewPlugin(),
+    // [수정] 메인 앱 화면을 보여주기 위해 Preview 플러그인을 비활성화합니다.
+    // mockupPreviewPlugin(), 
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),
