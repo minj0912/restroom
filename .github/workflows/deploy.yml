@@ -4,7 +4,6 @@ on:
   push:
     branches: "main"
 
-# 이 부분의 들여쓰기가 매우 중요합니다!
 permissions:
   contents: read
   pages: write
@@ -27,13 +26,10 @@ jobs:
         with:
           version: 8
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build Mockup Sandbox
+      - name: Build Web Only
         run: |
           cd artifacts/mockup-sandbox
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm run build
 
       - name: Setup Pages
