@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>시설 관리 시스템</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <style>
+        :root { --bg: #F3F4F6; --surface: #FFFFFF; --tint: #2563EB; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .banner { background: var(--tint); border-radius: 20px; padding: 24px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; box-shadow: 0 10px 15px rgba(37, 99, 235, 0.2); }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .card { background: var(--surface); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .icon-box { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+        .card-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        /* 카테고리별 색상 */
+        .c1 { background: #ECFDF5; color: #10B981; } .c2 { background: #FEF2F2; color: #EF4444; }
+        .c3 { background: #FFFBEB; color: #F59E0B; } .c4 { background: #EEF2FF; color: #6366F1; }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div><div style="font-size:11px; opacity:0.8;">시설 관리 시스템</div><h2 style="margin:0; font-size:20px;">무엇을 도와드릴까요?</h2></div>
+        <ion-icon name="business-outline" style="font-size:48px; opacity:0.5;"></ion-icon>
+    </div>
+    <div class="grid">
+        <div class="card" onclick="alert('청소 접수 완료')"><div class="icon-box c1"><ion-icon name="sparkles-outline" size="large"></ion-icon></div><div class="card-title">청소 요청</div></div>
+        <div class="card" onclick="alert('수리 접수 완료')"><div class="icon-box c2"><ion-icon name="construct-outline" size="large"></ion-icon></div><div class="card-title">시설 수리</div></div>
+        <div class="card" onclick="alert('비품 접수 완료')"><div class="icon-box c3"><ion-icon name="cube-outline" size="large"></ion-icon></div><div class="card-title">비품 부족</div></div>
+        <div class="card" onclick="alert('안전 신고')"><div class="icon-box c4"><ion-icon name="shield-checkmark-outline" size="large"></ion-icon></div><div class="card-title">안전 신고</div></div>
+    </div>
+</body>
+</html>

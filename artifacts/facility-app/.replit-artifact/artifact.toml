@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/"
+title = "시설관리 앱"
+version = "1.0.0"
+id = "artifacts/facility-app"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+localPort = 25034
+name = "expo"
+paths = ["/"]
+
+[services.development]
+run = "pnpm --filter @workspace/facility-app run dev"
+
+[services.env]
+PORT = "25034"
+BASE_PATH = "/"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/facility-app", "run", "build"]
+run = ["pnpm", "--filter", "@workspace/facility-app", "run", "serve"]

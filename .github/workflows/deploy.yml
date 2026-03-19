@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]  # 본인의 기본 브랜치 이름이 master라면 master로 수정
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Mockup Sandbox
+        # 우리가 터미널에서 입력했던 환경변수를 여기에 녹여냅니다.
+        run: |
+          cd artifacts/mockup-sandbox
+          pnpm run build
+        env:
+          PORT: 3000
+          BASE_PATH: /  # GitHub Pages 주소에 따라 수정될 수 있습니다.
+          VITE_APP_MODE: main 
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 빌드된 결과물 위치
+          path: './artifacts/mockup-sandbox/dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
